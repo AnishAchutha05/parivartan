@@ -439,12 +439,46 @@
 
   /* ═══════════════════════════ RAINBOW DIVIDER ═══════════════════════════ */
   .rainbow-bar {
-    height: 6px; border-radius: 10px; margin: 0 0 32px;
+    height: 6px; border-radius: 10px; margin: 0;
     background: linear-gradient(90deg, var(--coral), var(--sun), var(--mint), var(--sky), var(--violet), var(--coral));
     background-size: 200%;
     animation: rainbowSlide 3s linear infinite;
   }
   @keyframes rainbowSlide { to { background-position: 200%; } }
+
+  /* ═══════════════════════════ IMAGE CAROUSEL ═══════════════════════════ */
+  .img-carousel-wrap {
+    position: relative; overflow: hidden; background: #0d0d0d;
+    height: 260px; cursor: grab; user-select: none;
+  }
+  .img-carousel-wrap:active { cursor: grabbing; }
+  .img-carousel-track {
+    display: flex; width: max-content; height: 100%;
+    animation: marqueeScroll 40s linear infinite;
+  }
+  .img-carousel-wrap:hover .img-carousel-track { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(var(--marquee-width)); }
+  }
+  .carousel-slide {
+    flex-shrink: 0; position: relative; overflow: hidden;
+    width: 380px; height: 100%;
+  }
+  .carousel-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block; pointer-events: none;
+    transition: transform 0.5s ease;
+  }
+  .carousel-slide:hover img { transform: scale(1.06); }
+  .carousel-slide::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
+  }
+  @media (max-width: 600px) {
+    .img-carousel-wrap { height: 180px; }
+    .carousel-slide { width: 260px; }
+  }
 
   /* ═══════════════════════════ FLOATING STARS ═══════════════════════════ */
   .stars-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
@@ -560,6 +594,25 @@
 
   <!-- ══════════════ RAINBOW BAR ══════════════ -->
   <div class="rainbow-bar"></div>
+
+  <!-- ══════════════ IMAGE CAROUSEL ══════════════ -->
+  <div class="img-carousel-wrap" id="imgCarousel">
+    <div class="img-carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="carousel/Amblee Activity.jpg" alt="Activity at Amblee"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Bird Sanctury.jpg" alt="Bird Sanctuary"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Bird.jpg" alt="Birds at Amblee"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Coordinating .jpg" alt="Coordinating Activities"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Emotional challenges.jpg" alt="Emotional Challenges"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Learning activities.jpg" alt="Learning Activities"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Morning Ex.jpg" alt="Morning Exercise"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Physical .jpg" alt="Physical Activities"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Pic.jpg" alt="Amblee Resort"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Power of Team work &amp; leadership.png" alt="Teamwork and Leadership"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee Silence &amp; nature.jpg" alt="Silence and Nature"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee mor.jpg" alt="Morning at Amblee"></div>
+      <div class="carousel-slide"><img src="carousel/Amblee morn ex.jpg" alt="Morning Exercises"></div>
+    </div>
+  </div>
 
   <!-- ══════════════ NAV TABS ══════════════ -->
   <div class="nav-tabs" id="navTabs">
@@ -921,8 +974,8 @@
     <div class="contact-grid">
 
       <div class="contact-card" style="animation-delay:0.05s">
-        <div class="cc-avatar">👩‍🏫 </div>
-        <div class="cc-name">Sunitha Kolar</div>
+        <div class="cc-avatar">👨‍🏫</div>
+        <div class="cc-name">Faculty – Line 1</div>
         <div class="cc-role">BUOYANCEE FACULTY</div>
         <a href="https://wa.me/919880144223" target="_blank" class="wa-btn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.104.549 4.082 1.51 5.797L0 24l6.388-1.485A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.506-5.17-1.392l-.37-.22-3.791.881.923-3.682-.243-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -932,8 +985,8 @@
       </div>
 
       <div class="contact-card" style="animation-delay:0.12s">
-        <div class="cc-avatar">👨‍🏫</div>
-        <div class="cc-name">Ajit Kaikini</div>
+        <div class="cc-avatar">👩‍🏫</div>
+        <div class="cc-name">Faculty – Line 2</div>
         <div class="cc-role">BUOYANCEE FACULTY</div>
         <a href="https://wa.me/919945006600" target="_blank" class="wa-btn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.104.549 4.082 1.51 5.797L0 24l6.388-1.485A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.506-5.17-1.392l-.37-.22-3.791.881.923-3.682-.243-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -982,6 +1035,22 @@
 </footer>
 
 <script>
+  // ── Image Carousel (infinite marquee) ──
+  (function() {
+    const track = document.getElementById('carouselTrack');
+    const origSlides = Array.from(track.children);
+
+    // Clone all slides and append to create seamless loop
+    origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+
+    // Measure total width of original set
+    const totalW = origSlides.reduce((sum, s) => sum + s.offsetWidth, 0);
+
+    // Set CSS variable so @keyframes knows how far to scroll
+    track.style.setProperty('--marquee-width', `-${totalW}px`);
+  })();
+
+
   // ── Section switching ──
   function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
