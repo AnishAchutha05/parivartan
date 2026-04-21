@@ -106,6 +106,14 @@
     font-weight: 900; color: #1A1A1A;
     letter-spacing: 3px; line-height: 1;
   }
+  .hero-brand-text-img {
+    height: 88px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    /* let it breathe on small screens */
+    max-width: clamp(200px, 45vw, 360px);
+  }
   .hero-brand-sub {
     font-size: 0.68rem; letter-spacing: 3px; color: #888;
     font-weight: 500; margin-top: 4px; text-transform: uppercase;
@@ -556,10 +564,10 @@
   <!-- ══════════════ HERO ══════════════ -->
   <section class="hero">
     <div class="hero-logos">
-      <!-- Row 1: B logo + BUOYANCEE text side by side -->
+      <!-- Row 1: B logo + BUOYANCEE text image side by side -->
       <div class="hero-brand-row">
-        <img src="pics/Screenshot from 2026-04-20 17-42-03.png" alt="Buoyancee Logo" class="hero-logo-img">
-        <div class="hero-brand-name">BUOYANCEE</div>
+        <img src="pics/Screenshot from 2026-04-20 17-42-03.png" alt="Buoyancee B Logo" class="hero-logo-img">
+        <img src="pics/text.jpeg" alt="BUOYANCEE" class="hero-brand-text-img">
       </div>
       <!-- Row 2: tagline below -->
       <div class="hero-brand-sub">Since 1992 &nbsp;&middot;&nbsp; National &amp; International Recognitions</div>
